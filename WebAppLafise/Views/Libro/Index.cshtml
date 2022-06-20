@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebAppLafise.Models.LibroDto>
+
+@{
+    ViewData["Title"] = "Libros";
+}
+
+<h1>Libros</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+    @using(Html.BeginForm())
+    {
+        
+  
+  <input type="text" class="form-control" placeholder="Escriba el título" id="Titulo" name="Titulo">
+  <div class="form-check">
+    
+  </div>
+  <button type="submit" class="btn btn-primary">Buscar</button>
+    }
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
